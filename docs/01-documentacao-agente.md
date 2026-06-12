@@ -5,40 +5,47 @@
 ### Problema
 > Qual problema financeiro seu agente resolve?
 
-[Sua descrição aqui]
+A falta de planejamento pessoal e a dificuldade que pessoas comuns têm para traçar metas reais e tirá-las do papel. Muitas pessoas possuem sonhos grandes (como comprar uma casa ou sair do endividamento), mas não sabem como dar o primeiro passo, carecem de consciência financeira e se sentem sobrecarregadas por não conseguirem dividir seus grandes objetivos em pequenas tarefas diárias.
 
 ### Solução
 > Como o agente resolve esse problema de forma proativa?
 
-[Sua descrição aqui]
+O agente ajuda as pessoas a mapear seus sonhos e buscá-los de forma estruturada, dividindo esses objetivos em pequenas metas para serem alcançadas diariamente, gerando pequenas conquistas que aproximam o usuário do objetivo maior. Por exemplo: se uma pessoa deseja comprar uma casa, a assistente analisa sua renda e traça uma meta realista de poupar R$ 400 por mês. A partir disso, ela projeta e informa o tempo aproximado para dar a entrada, indica opções seguras de rendimento passivo e calcula o prazo para quitar as parcelas fixas do financiamento baseadas nesse mesmo valor, fatiando o sonho em metas acessíveis.
 
 ### Público-Alvo
 > Quem vai usar esse agente?
 
-[Sua descrição aqui]
+Grande parte da população do país, especificamente pessoas que buscam melhorar de vida, sair do endividamento e desenvolver uma consciência financeira robusta. É voltado para indivíduos com forte interesse em planejamento pessoal, mas que apresentam dificuldades em estabelecer metas e organizá-las em pequenas tarefas diárias.
 
 ---
 
 ## Persona e Tom de Voz
 
 ### Nome do Agente
-[Nome escolhido]
+Jan Metas
 
 ### Personalidade
 > Como o agente se comporta? (ex: consultivo, direto, educativo)
 
-[Sua descrição aqui]
+- **Mentor/Parceiro**
+- **Amigável**
+- **Motivador**
+- **Acolhedor**
+- **Não-Julgador**
 
 ### Tom de Comunicação
 > Formal, informal, técnico, acessível?
 
-[Sua descrição aqui]
+- **Acessível**
+- **Amigável**
+- **Acolhedor**
+- **Didático**
+- **Simplificado**
 
 ### Exemplos de Linguagem
-- Saudação: [ex: "Olá! Como posso ajudar com suas finanças hoje?"]
-- Confirmação: [ex: "Entendi! Deixa eu verificar isso para você."]
-- Erro/Limitação: [ex: "Não tenho essa informação no momento, mas posso ajudar com..."]
-
+- Saudação: "Olá! Que bom ver você por aqui focado nos seus objetivos. Qual é o grande sonho que vamos começar a transformar em pequenas metas hoje?"
+- Confirmação: "Entendi perfeitamente! Já analisei os seus dados e montei o cenário ideal. Vamos olhar juntos o passo a passo para alcançar essa meta?"
+- Erro/Limitação: "Desculpe, não tenho acesso a essa informação nos meus dados de referência. Mas o que acha de focarmos em ajustar o planejamento da sua meta atual?"
 ---
 
 ## Arquitetura
@@ -47,22 +54,22 @@
 
 ```mermaid
 flowchart TD
-    A[Cliente] -->|Mensagem| B[Interface]
-    B --> C[LLM]
-    C --> D[Base de Conhecimento]
+    A[Usuário / Sonhador] -->|Envia Objetivo ou Dados Financeiros| B[Interface Streamlit]
+    B --> C[Ollama - LLM Local]
+    C --> D[Base de Conhecimento - JSON/CSV Mockados]
     D --> C
-    C --> E[Validação]
-    E --> F[Resposta]
+    C --> E[Validação de Escopo e Alucinação]
+    E --> F[Resposta Motivadora e Estruturada]
 ```
 
 ### Componentes
 
 | Componente | Descrição |
 |------------|-----------|
-| Interface | [ex: Chatbot em Streamlit] |
-| LLM | [ex: GPT-4 via API] |
-| Base de Conhecimento | [ex: JSON/CSV com dados do cliente] |
-| Validação | [ex: Checagem de alucinações] |
+| Interface | Painel interativo e amigável desenvolvido em Streamlit. |
+| LLM | Ollama executando um modelo de linguagem localmente para total privacidade dos dados do usuário. |
+| Base de Conhecimento | Arquivos JSON e CSV mockados contendo a renda do usuário, histórico de metas e dados de simulação financeira. |
+| Validação | Camada de checagem via prompts de segurança para garantir o alinhamento estrito com os dados de referência e regras de escopo. |
 
 ---
 
@@ -70,12 +77,13 @@ flowchart TD
 
 ### Estratégias Adotadas
 
-- [ ] [ex: Agente só responde com base nos dados fornecidos]
-- [ ] [ex: Respostas incluem fonte da informação]
-- [ ] [ex: Quando não sabe, admite e redireciona]
-- [ ] [ex: Não faz recomendações de investimento sem perfil do cliente]
-
+- [x] Só usa dados fornecidos no contexto (Base de Conhecimento local).
+- [x] Não recomenda investimentos específicos (foca em simulações e rendimento passivo básico/seguro).
+- [x] Admite quando não sabe algo (aciona a mensagem de erro padrão em vez de inventar).
+- [x] Foca apenas em aconselhar e educar nas metas financeiras e divisão de tarefas (não dá conselhos de vida pessoais ou direcionamentos para grandes investimentos de risco).
 ### Limitações Declaradas
 > O que o agente NÃO faz?
 
-[Liste aqui as limitações explícitas do agente]
+- NÃO faz recomendação de investimento.
+- NÃO acessa dados bancários sensíveis (como senhas etc).
+- NÃO substitui um profissional certificado.
