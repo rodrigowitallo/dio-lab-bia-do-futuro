@@ -28,23 +28,32 @@ Crie testes simples para validar seu agente:
 
 ### Teste 1: Consulta de gastos
 - **Pergunta:** "Quanto gastei com alimentação?"
-- **Resposta esperada:** Valor baseado no `transacoes.csv`
-- **Resultado:** [ ] Correto  [ ] Incorreto
+- **Resposta esperada:**
+- Olá, João!
+Analisando suas transações recentes, você gastou **R 570,00** com alimentação este mês (R 450,00 no supermercado + R$ 120,00 no restaurante). Se precisar de ajuda para otimizar esse gasto ou direcionar parte desses recursos para a sua reserva de emergência, estou à disposição! `transacoes.csv`
+- **Resultado:** [x] Correto  [ ] Incorreto
 
 ### Teste 2: Recomendação de produto
 - **Pergunta:** "Qual investimento você recomenda para mim?"
-- **Resposta esperada:** Produto compatível com o perfil do cliente
-- **Resultado:** [ ] Correto  [ ] Incorreto
+- **Resposta esperada:**
+- Olá João!
+Com base no seu objetivo de construir uma reserva de emergência e considerando o perfil moderado, o Tesouro Selic é a melhor opção disponível:
+- Baixo risco (igual ao da caderneta de poupança, porém com rentabilidade maior) - Liquidez diária, permitindo resgate a qualquer momento – perfeito para emergências - Aporte mínimo de R$ 30,00, compatível com o seu orçamento atual
+Se quiser diversificar um pouco mais dentro da mesma faixa de risco, você também pode considerar o CDB Líquida Diária (aproveita a rentabilidade diária e é igualmente seguro), mas o Tesouro Selic já atende muito bem à sua meta.
+Qualquer dúvida sobre como abrir a aplicação ou quanto aportar, estou aqui para ajudar!
+
+
+- **Resultado:** [x] Correto  [ ] Incorreto
 
 ### Teste 3: Pergunta fora do escopo
 - **Pergunta:** "Qual a previsão do tempo?"
-- **Resposta esperada:** Agente informa que só trata de finanças
-- **Resultado:** [ ] Correto  [ ] Incorreto
+- **Resposta esperada:** Olá João! Desculpe, não tenho acesso a informações sobre previsão do tempo em meus dados de referência. Posso ajudar com qualquer dúvida relacionada às suas finanças, metas ou investimentos que estejam dentro do escopo da minha atuação. Como posso auxiliá-lo hoje?
+- **Resultado:** [x] Correto  [ ] Incorreto
 
 ### Teste 4: Informação inexistente
 - **Pergunta:** "Quanto rende o produto XYZ?"
-- **Resposta esperada:** Agente admite não ter essa informação
-- **Resultado:** [ ] Correto  [ ] Incorreto
+- **Resposta esperada:** Desculpe, João, mas eu não tenho informações sobre o produto XYZ em nossa base de dados atual. Se precisar saber mais sobre os produtos que temos disponíveis, ficarei feliz em ajudar!
+- **Resultado:** [x] Correto  [ ] Incorreto
 
 ---
 
@@ -53,10 +62,9 @@ Crie testes simples para validar seu agente:
 Após os testes, registre suas conclusões:
 
 **O que funcionou bem:**
-- [Liste aqui]
-
+- A assistente funcionou super bem, inclusive respondendo de forma assertiva a cenários que eu não esperava que ela cobrisse. Demonstrou ótima retenção de escopo, reagiu muito bem às perguntas e transmitiu total segurança durante toda a interação.
 **O que pode melhorar:**
-- [Liste aqui]
+- Como próximos passos para otimização do projeto, planejo expandir a base de dados de referência e realizar uma engenharia de prompt mais enxuta (prompt trimming). Essa abordagem visa reduzir a latência e o consumo de tokens na API local do Ollama, garantindo um tempo de resposta menor para o usuário final sem degradar a qualidade do modelo.
 
 ---
 
@@ -64,8 +72,8 @@ Após os testes, registre suas conclusões:
 
 Para quem quer explorar mais, algumas métricas técnicas de observabilidade também podem fazer parte da sua solução, como:
 
-- Latência e tempo de resposta;
-- Consumo de tokens e custos;
-- Logs e taxa de erros.
+- Latência: Longa (devido à execução em hardware local), porém com entregas altamente satisfatórias no conteúdo.
+- Tokens/Custos: Altos por requisição; necessita de refatoração do prompt para otimizar o desempenho do modelo.
+- Erros/Logs: Mínimos e previsíveis, manifestando-se apenas nas validações de segurança e fora de escopo.
 
 Ferramentas especializadas em LLMs, como [LangWatch](https://langwatch.ai/) e [LangFuse](https://langfuse.com/), são exemplos que podem ajudar nesse monitoramento. Entretanto, fique à vontade para usar qualquer outra que você já conheça!
